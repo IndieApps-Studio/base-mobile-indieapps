@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-
-class NavigationServiceHome extends _NavigationService {
-  NavigationServiceHome() : super(GlobalKey<NavigatorState>());
-}
-
 class NavigationServiceMain extends _NavigationService {
   NavigationServiceMain() : super(GlobalKey<NavigatorState>());
 }
@@ -22,16 +17,16 @@ class _NavigationService {
     return navigatorKey.currentState?.popUntil(predicate);
   }
 
-  Future<Object?>? pushNamed(String routeName, {Object? args}) {
+  Future? pushNamed(String routeName, {Object? args}) {
     return navigatorKey.currentState?.pushNamed(routeName, arguments: args);
   }
 
-  Future<Object?>? pushReplacementNamed(String routeName, {Object? args}) {
+  Future? pushReplacementNamed(String routeName, {Object? args}) {
     return navigatorKey.currentState
         ?.pushReplacementNamed(routeName, arguments: args);
   }
 
-  Future<Object?>? pushRemoveUntil(String routeName, {Object? args}) {
+  Future? pushRemoveUntil(String routeName, {Object? args}) {
     return navigatorKey.currentState?.pushNamedAndRemoveUntil(
         routeName, (Route<dynamic> route) => false,
         arguments: args);

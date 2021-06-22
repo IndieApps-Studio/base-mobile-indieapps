@@ -12,11 +12,10 @@ class DIService {
     GetIt.I.registerSingleton<NavigationServiceMain>(NavigationServiceMain());
     GetIt.I.registerSingleton<FluroRouter>(FluroRouter());
     GetIt.I.registerSingleton<HiveService>(HiveService());
+    GetIt.I.registerSingleton<FlutterSecureStorage>(FlutterSecureStorage());
   }
 
   static void initializeConfig(Dio dio) {
-    GetIt.I.registerSingleton<NavigationServiceHome>(NavigationServiceHome());
-    GetIt.I.registerSingleton<FlutterSecureStorage>(FlutterSecureStorage());
     GetIt.I.registerSingleton<UserService>(UserService());
     GetIt.I.registerSingleton<Dio>(dio);
   }

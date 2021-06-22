@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../modules/login/view/login_screen.dart';
-import '../modules/main/view/main_widget.dart';
+import '../modules/main/view/main_page.dart';
 
 void configureRoutes() {
   final router = GetIt.I<FluroRouter>();
@@ -20,16 +20,16 @@ void configureRoutes() {
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
           LoginScreen(),
     ),
-    transitionType: TransitionType.fadeIn,
+    transitionType: TransitionType.cupertino,
   );
 
   router.define(
     '/main',
     handler: Handler(
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
-          MainWidget(),
+          MainPage(),
     ),
-    transitionType: TransitionType.fadeIn,
+    transitionType: TransitionType.cupertino,
   );
 }
 

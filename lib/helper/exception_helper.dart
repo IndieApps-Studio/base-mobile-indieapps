@@ -1,12 +1,13 @@
 import 'dart:io';
 
+import 'package:base_mobile_indieapps/models/base_response.dart';
+import 'package:base_mobile_indieapps/utils/constant.dart';
+import 'package:base_mobile_indieapps/utils/function.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'
     hide Options;
 import 'package:get_it/get_it.dart';
-import 'package:base_mobile_indieapps/models/base_response.dart';
-import 'package:base_mobile_indieapps/utils/constant.dart';
-import 'package:base_mobile_indieapps/utils/toast.dart';
 
 import '../services/navigation_service.dart';
 
@@ -59,9 +60,13 @@ class ExceptionHelper<T> {
           }
 
           if (eResponse.requestOptions.path != '/v1/auth/login') {
+             if (kDebugMode) {
+              showToastError(message);
+            }
+
             await GetIt.I<FlutterSecureStorage>().deleteAll();
             await GetIt.I<NavigationServiceMain>().pushRemoveUntil('/login');
-
+           
             return BaseResponse(
               message: message,
               statusCode: statusCode,

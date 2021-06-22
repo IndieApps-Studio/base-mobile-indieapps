@@ -3,6 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import '../modules/splashscreen/view/splash_screen.dart';
 import '../services/di_service.dart';
@@ -36,6 +37,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    Hive.initFlutter();
     DIService.initialize();
     configureRoutes();
   }
@@ -61,7 +63,7 @@ class _MyAppState extends State<MyApp> {
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-          fontFamily: 'OpenSans',
+          fontFamily: 'Roboto',
         ),
         home: SplashScreen(),
       ),
