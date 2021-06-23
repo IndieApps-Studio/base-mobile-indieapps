@@ -36,7 +36,7 @@ class CustomNoDataWidget extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                label ?? '${tr('widgets.no_data')}',
+                label ?? tr('widgets.no_data'),
                 style: TextStyle(
                   fontSize: 32.sp,
                   color: Colors.black38,
@@ -47,7 +47,7 @@ class CustomNoDataWidget extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                '${tr('widgets.tap_for_refresh')}',
+                tr('widgets.tap_for_refresh'),
                 style: TextStyle(
                   fontSize: 32.sp,
                   color: Colors.black38,

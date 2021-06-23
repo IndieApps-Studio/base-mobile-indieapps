@@ -14,7 +14,7 @@ abstract class BaseCubit<S, M> extends Cubit<S> {
   Meta _meta = Meta();
   Meta get meta => _meta;
 
-  List<M> _currentData = [];
+  final List<M> _currentData = [];
   List<M> get currentData => _currentData;
 
   String _searchKey = '';

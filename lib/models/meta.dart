@@ -14,11 +14,11 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['page'] = this.page;
-    data['pages'] = this.pages;
-    data['perpage'] = this.perpage;
-    data['total'] = this.total;
+    final Map<String, dynamic> data = {};
+    data['page'] = page;
+    data['pages'] = pages;
+    data['perpage'] = perpage;
+    data['total'] = total;
     return data;
   }
 }

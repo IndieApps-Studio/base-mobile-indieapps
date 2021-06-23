@@ -15,7 +15,7 @@ class CustomBoxShadow extends BoxShadow {
   Paint toPaint() {
     final Paint result = Paint()
       ..color = color
-      ..maskFilter = MaskFilter.blur(this.blurStyle, blurSigma);
+      ..maskFilter = MaskFilter.blur(blurStyle, blurSigma);
     assert(() {
       if (debugDisableShadows) result.maskFilter = null;
       return true;

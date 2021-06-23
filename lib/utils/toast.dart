@@ -3,9 +3,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 import 'extensions.dart';
 
-void toastError(String message) {
+void showToastError(String message) {
   Fluttertoast.showToast(
-    msg: "$message".capitalize,
+    msg: message.capitalize,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
@@ -15,9 +15,9 @@ void toastError(String message) {
   );
 }
 
-void toastSuccess(String message) {
+void showToastSuccess(String message) {
   Fluttertoast.showToast(
-    msg: "$message".capitalize,
+    msg: message.capitalize,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,

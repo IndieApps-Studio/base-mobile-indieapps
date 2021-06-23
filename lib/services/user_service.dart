@@ -5,6 +5,6 @@ class UserService {
   User? get getUser => _user;
 
   set setUser(User value) {
-    this._user = value;
+    _user = value;
   }
 }

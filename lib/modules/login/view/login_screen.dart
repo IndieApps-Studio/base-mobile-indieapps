@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: onPressedLogin,
               child: Text(
-                '${tr('login')}',
+                tr('login'),
               ),
             )
           ],
