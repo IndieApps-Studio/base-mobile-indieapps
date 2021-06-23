@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,7 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
         locale: context.locale,
+        builder: DevicePreview.appBuilder,
         navigatorKey: GetIt.I<NavigationServiceMain>().navigatorKey,
         onGenerateRoute: GetIt.I<FluroRouter>().generator,
         theme: ThemeData(

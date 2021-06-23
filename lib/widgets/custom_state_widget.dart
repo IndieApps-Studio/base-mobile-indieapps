@@ -8,14 +8,14 @@ class CustomStateWidget<SUCCESS, LOADING, FAILED> extends StatelessWidget {
       {Key? key,
       required this.onError,
       required this.state,
-      required this.child})
+      required this.builder})
       : super(key: key);
 
   final Function onError;
   final Object state;
 
   ///onSuccess State Widget Appear
-  final Widget child;
+  final Widget Function(BuildContext context, SUCCESS state) builder;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,10 @@ class CustomStateWidget<SUCCESS, LOADING, FAILED> extends StatelessWidget {
       return Center(child: CustomLoadingWidget());
     } else if (state is FAILED) {
       return CustomErrorWidget(onTap: onError);
-    } else if (state is FAILED) {
-      return child;
+    } else if (state is SUCCESS) {
+      return builder(context, state as SUCCESS);
     }
 
-    return CustomLoadingWidget();
+    return Center(child: CustomLoadingWidget());
   }
 }

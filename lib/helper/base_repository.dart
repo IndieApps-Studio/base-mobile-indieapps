@@ -22,20 +22,21 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
+      final Map<String, dynamic>  headers = {};
+      if (token != null) headers['Authorization'] = 'Bearer $token';
+
       final response = await retry(
         () => dio.get(
           api,
           queryParameters: queryParameters,
-          options: Options(
-              responseType: ResponseType.json,
-              headers: {'Authorization': 'Bearer $token'}),
+          options: Options(responseType: ResponseType.json, headers: headers),
         ),
         retryIf: (e) => e is SocketException || e is TimeoutException,
       );
 
       return BaseResponse(
         statusCode: response.statusCode,
-        data: response.data['data'],
+        data: response.data['data'] ?? response.data,
         meta: response.data['meta'] != null
             ? Meta.fromJson(response.data['meta'])
             : null,
@@ -52,13 +53,14 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
+     final Map<String, dynamic>  headers = {};
+      if (token != null) headers['Authorization'] = 'Bearer $token';
+
       final response = await retry(
         () => dio.post(
           api,
           data: json.encode(data),
-          options: Options(responseType: ResponseType.json, headers: {
-            'Authorization': 'Bearer $token',
-          }),
+          options: Options(responseType: ResponseType.json, headers: headers),
         ),
         retryIf: (e) => e is SocketException || e is TimeoutException,
       );
@@ -79,14 +81,15 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
+      final Map<String, dynamic>  headers = {};
+      if (token != null) headers['Authorization'] = 'Bearer $token';
+      
       final response = await retry(
         () => dio.put(
           api,
           data: json.encode(data),
           queryParameters: queryParameters,
-          options: Options(headers: {
-            'Authorization': 'Bearer $token',
-          }),
+          options: Options(headers: headers),
         ),
         retryIf: (e) => e is SocketException || e is TimeoutException,
       );

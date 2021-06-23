@@ -85,6 +85,6 @@ class _SplashScreenCubit extends Cubit<bool> {
 
   _init() async {
     await _repo.setConfig('id');
-    Future.delayed(Duration(seconds: 3)).then((value) => emit(true));
+    Future.delayed(Duration(seconds: 1)).then((value) => emit(true));
   }
 }

@@ -8,12 +8,12 @@ import 'package:get_it/get_it.dart';
 
 class UserRepository extends BaseRepository {
   Future<BaseResponse> fetchUser() async {
-    final response = await fetch("https://api.github.com/users/zersya");
+    final response = await fetch("/users/Zersya");
 
     if (response.statusCode == 200) {
       final data = User.fromJson(response.data);
 
-      GetIt.I<HiveService>().storeUserId(data.id);
+      GetIt.I<HiveService>().storeUserId('${data.id}');
       GetIt.I<UserService>().setUser = data;
       return BaseResponse(
         statusCode: response.statusCode,

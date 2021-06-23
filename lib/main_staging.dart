@@ -1,3 +1,6 @@
+// Copyright (c) 2021, IndieApps
+// https://indieapps.id/
+
 import 'dart:async';
 import 'dart:developer';
 
