@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:base_mobile_indieapps/models/base_response.dart';
 import 'package:base_mobile_indieapps/models/meta.dart';
@@ -7,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart'
     hide Options;
 import 'package:get_it/get_it.dart';
+import 'package:retry/retry.dart';
 
 import 'exception_helper.dart';
 
@@ -19,12 +22,15 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
-      final response = await dio.get(
-        api,
-        queryParameters: queryParameters,
-        options: Options(
-            responseType: ResponseType.json,
-            headers: {'Authorization': 'Bearer $token'}),
+      final response = await retry(
+        () => dio.get(
+          api,
+          queryParameters: queryParameters,
+          options: Options(
+              responseType: ResponseType.json,
+              headers: {'Authorization': 'Bearer $token'}),
+        ),
+        retryIf: (e) => e is SocketException || e is TimeoutException,
       );
 
       return BaseResponse(
@@ -46,12 +52,15 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
-      final response = await dio.post(
-        api,
-        data: json.encode(data),
-        options: Options(responseType: ResponseType.json, headers: {
-          'Authorization': 'Bearer $token',
-        }),
+      final response = await retry(
+        () => dio.post(
+          api,
+          data: json.encode(data),
+          options: Options(responseType: ResponseType.json, headers: {
+            'Authorization': 'Bearer $token',
+          }),
+        ),
+        retryIf: (e) => e is SocketException || e is TimeoutException,
       );
 
       return BaseResponse(
@@ -70,13 +79,16 @@ class BaseRepository {
     try {
       final token = await secureStorage.read(key: kToken);
 
-      final response = await dio.put(
-        api,
-        data: json.encode(data),
-        queryParameters: queryParameters,
-        options: Options(headers: {
-          'Authorization': 'Bearer $token',
-        }),
+      final response = await retry(
+        () => dio.put(
+          api,
+          data: json.encode(data),
+          queryParameters: queryParameters,
+          options: Options(headers: {
+            'Authorization': 'Bearer $token',
+          }),
+        ),
+        retryIf: (e) => e is SocketException || e is TimeoutException,
       );
 
       return BaseResponse(

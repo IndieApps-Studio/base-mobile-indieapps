@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   cached_network_image: ^3.0.0
   cupertino_icons: ^1.0.2
+  device_preview: ^0.7.3
   dio: ^4.0.0
   easy_localization: ^3.0.0
   fluro: ^2.0.3
@@ -42,6 +43,7 @@ dependencies:
   package_info: ^2.0.2
   path_provider: ^2.0.2
   permission_handler: ^8.1.1
+  retry: ^3.1.0
 
 dev_dependencies:
   flutter_test:
