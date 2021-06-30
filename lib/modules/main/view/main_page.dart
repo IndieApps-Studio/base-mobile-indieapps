@@ -29,6 +29,17 @@ class MainPage extends StatelessWidget {
   }
 }
 
+class _MainExample extends StatelessWidget {
+  const _MainExample({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: null,
+    );
+  }
+}
+
 class _MainWidget extends StatelessWidget {
   const _MainWidget({Key? key}) : super(key: key);
 

@@ -33,7 +33,7 @@ class CustomErrorWidget extends StatelessWidget {
                 height: 8,
               ),
               Text(
-                tr('widgets.tap_for_refresh'),
+                tr('errors.tap_for_refresh'),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFDB5A5A),

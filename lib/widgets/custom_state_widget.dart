@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'custom_error_widget.dart';
@@ -27,6 +28,27 @@ class CustomStateWidget<SUCCESS, LOADING, FAILED> extends StatelessWidget {
       return builder(context, state as SUCCESS);
     }
 
-    return Center(child: CustomLoadingWidget());
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            Icons.error,
+            size: 32,
+            color: Color(0xFFDB5A5A),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Text(
+            tr('errors.state', args: [state.toString()]),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFDB5A5A),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
