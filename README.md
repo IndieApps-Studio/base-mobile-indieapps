@@ -4,6 +4,12 @@ A new Flutter project.
 
 ## Getting Started
 
+### User Hive Generator 
+
+- To generate a TypeAdapter for a class, annotate it with @HiveType and provide a typeId (between 0 and 223)
+- Annotate all fields which should be stored with @HiveField
+- Run build task **flutter packages pub run build_runner build**
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:

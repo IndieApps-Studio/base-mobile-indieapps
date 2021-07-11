@@ -1,3 +1,4 @@
+import 'package:base_mobile_indieapps/models/user.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -12,23 +13,26 @@ class HiveService {
 
   Future openBoxPersonal() async {
     if (!Hive.isBoxOpen(_keyPersonal)) {
+      Hive.registerAdapter(UserAdapter());
       return await Hive.openBox(_keyPersonal);
     }
   }
 
-  void storeLearningToolCode(String code) {
-    Hive.box(_keyPersonal).put(kLearningToolCode, code);
+  User getUser() {
+    final userId = _getUserId();
+    return Hive.box(_keyPersonal).get(userId);
   }
 
-  String getLearningToolCode() {
-    return Hive.box(_keyPersonal).get(kLearningToolCode);
+  void storeUser(User user) {
+    _storeUserId(user.id);
+    Hive.box(_keyPersonal).put(user.id, user);
   }
 
-  void storeUserId(String userId) {
+  void _storeUserId(int userId) {
     Hive.box(_keyPersonal).put(kUserId, userId);
   }
 
-  String getUserId() {
+  int _getUserId() {
     return Hive.box(_keyPersonal).get(kUserId);
   }
 

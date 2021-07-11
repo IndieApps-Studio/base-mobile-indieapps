@@ -13,7 +13,7 @@ class UserRepository extends BaseRepository {
     if (response.statusCode == 200) {
       final data = User.fromJson(response.data);
 
-      GetIt.I<HiveService>().storeUserId('${data.id}');
+      GetIt.I<HiveService>().storeUser(data);
       GetIt.I<UserService>().setUser = data;
       return BaseResponse(
         statusCode: response.statusCode,

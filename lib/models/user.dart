@@ -1,8 +1,18 @@
-class User {
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'user.g.dart';
+
+@HiveType(typeId: 0)
+class User extends HiveObject {
+  @HiveField(0)
   int id = -1;
+  @HiveField(1)
   String name = 'placeholder_name';
+  @HiveField(2)
   String htmlUrl = 'placeholder_htmlUrl';
+  @HiveField(3)
   String createdAt = '';
+  @HiveField(4)
   String updatedAt = '';
 
   User();
