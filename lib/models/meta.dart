@@ -1,24 +1,17 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'meta.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Meta {
-  late int page = 0;
-  late int pages = 1;
-  late int perpage = 10;
-  late int total = 1;
+  final int page;
+  final int pages;
+  final int perpage;
+  final int total;
 
-  Meta();
+  Meta(this.page, this.pages, this.perpage, this.total);
 
-  Meta.fromJson(Map<String, dynamic> json) {
-    page = json['page'];
-    pages = json['pages'];
-    perpage = json['perpage'];
-    total = json['total'];
-  }
+  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['page'] = page;
-    data['pages'] = pages;
-    data['perpage'] = perpage;
-    data['total'] = total;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$MetaToJson(this);
 }

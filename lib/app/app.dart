@@ -6,33 +6,34 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../modules/splashscreen/view/splash_screen.dart';
-import '../services/di_service.dart';
-import '../services/navigation_service.dart';
+import 'package:base_mobile_indieapps/modules/splashscreen/view/splash_screen.dart';
+import 'package:base_mobile_indieapps/services/di_service.dart';
+import 'package:base_mobile_indieapps/services/navigation_service.dart';
+
 import 'routes.dart';
 
-class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+class App extends StatefulWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _AppState createState() => _AppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  final ColorScheme _colorScheme = ColorScheme(
+class _AppState extends State<App> {
+  final ColorScheme _colorScheme = const ColorScheme(
     brightness: Brightness.light,
-    primary: const Color(0xFFA80311),
-    primaryVariant: const Color(0xFF56423E),
-    secondary: const Color(0xFF006978),
-    secondaryVariant: const Color(0xFF009FAC),
-    surface: const Color(0xFFEFFDF8),
-    background: const Color(0xFFFFFFFF),
-    error: const Color(0xFFFF0000),
-    onPrimary: const Color(0xFFFAFAFA),
-    onSecondary: const Color(0xFFFAFAFA),
-    onSurface: const Color(0xFF000000),
-    onBackground: const Color(0xFF000000),
-    onError: const Color(0xFFFAFAFA),
+    primary: Color(0xFFA80311),
+    primaryVariant: Color(0xFF56423E),
+    secondary: Color(0xFF006978),
+    secondaryVariant: Color(0xFF009FAC),
+    surface: Color(0xFFEFFDF8),
+    background: Color(0xFFFFFFFF),
+    error: Color(0xFFFF0000),
+    onPrimary: Color(0xFFFAFAFA),
+    onSecondary: Color(0xFFFAFAFA),
+    onSurface: Color(0xFF000000),
+    onBackground: Color(0xFF000000),
+    onError: Color(0xFFFAFAFA),
   );
 
   @override
@@ -46,7 +47,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(1280, 820),
       builder: () => MaterialApp(
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
           ),
           fontFamily: 'Roboto',
         ),
-        home: SplashScreen(),
+        home: const SplashScreen(),
       ),
     );
   }

@@ -1,37 +1,29 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 0)
 class User extends HiveObject {
   @HiveField(0)
-  int id = -1;
+  final int id;
   @HiveField(1)
-  String name = 'placeholder_name';
+  final String name;
+  @JsonKey(name: 'html_url')
   @HiveField(2)
-  String htmlUrl = 'placeholder_htmlUrl';
+  final String htmlUrl;
+  @JsonKey(name: 'created_at')
   @HiveField(3)
-  String createdAt = '';
+  final String createdAt;
+  @JsonKey(name: 'updated_at')
   @HiveField(4)
-  String updatedAt = '';
+  final String updatedAt;
 
-  User();
+  User(this.id, this.name, this.htmlUrl, this.createdAt, this.updatedAt);
 
-  User.fromJson(Map<String, dynamic>? json) {
-    id = json?['id'] ?? 'placeholder_id';
-    name = json?['name'] ?? 'placeholder_name';
-    htmlUrl = json?['html_url'] ?? 'placeholder_htmlUrl';
-    createdAt = json?['created_at'] ?? '';
-    updatedAt = json?['updated_at'] ?? '';
-  }
+  
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    data['id'] = id;
-    data['name'] = name;
-    data['html_url'] = htmlUrl;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

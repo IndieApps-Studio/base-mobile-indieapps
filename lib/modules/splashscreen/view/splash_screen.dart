@@ -6,12 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../services/navigation_service.dart';
+import 'package:base_mobile_indieapps/services/navigation_service.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
-  _navigateLogin() {
+  void Function()? _navigateLogin() {
     GetIt.I<NavigationServiceMain>().pushReplacementNamed('/login');
   }
 
@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
               _navigateLogin();
             }
           },
-          child: _SplashBody(),
+          child: const _SplashBody(),
         );
       }),
     );
@@ -41,7 +41,6 @@ class _SplashBody extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Align(
-          alignment: Alignment.center,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -56,10 +55,10 @@ class _SplashBody extends StatelessWidget {
                   text: '${tr('welcome')}\n',
                   style: TextStyle(
                     fontSize: 32.sp,
-                    color: Color(0xFF240115),
+                    color: const Color(0xFF240115),
                   ),
-                  children: [
-                    TextSpan(
+                  children: const [
+                     TextSpan(
                       text: 'Base Mobile',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -68,7 +67,7 @@ class _SplashBody extends StatelessWidget {
                   ],
                 ),
               ),
-              CustomLoadingWidget(),
+              const CustomLoadingWidget(),
             ],
           ),
         ),
@@ -83,8 +82,8 @@ class _SplashScreenCubit extends Cubit<bool> {
   }
   final _repo = MainRepository();
 
-  _init() async {
-    await _repo.setConfig('id');
-    Future.delayed(Duration(seconds: 1)).then((value) => emit(true));
+  Future _init() async {
+    await _repo.setup();
+    Future.delayed(const Duration(seconds: 1)).then((value) => emit(true));
   }
 }

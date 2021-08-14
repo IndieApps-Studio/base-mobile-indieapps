@@ -1,17 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../models/meta.dart';
+import 'package:base_mobile_indieapps/models/meta.dart';
 
 abstract class BaseCubit<S, M> extends Cubit<S> {
   BaseCubit(S init) : super(init);
 
-  int _currentPage = 1;
-  int get currentPage => _currentPage;
-  set setCurrentPage(int value) {
-    _currentPage = value;
-  }
+  int currentPage = 1;
 
-  Meta _meta = Meta();
+  Meta _meta = Meta(0, 0, 0, 0);
   Meta get meta => _meta;
 
   final List<M> _currentData = [];
@@ -26,7 +22,7 @@ abstract class BaseCubit<S, M> extends Cubit<S> {
   }
 
   Future<void> initial() async {
-    _currentPage = 1;
+    currentPage = 1;
     _currentData.clear();
   }
 
@@ -37,10 +33,10 @@ abstract class BaseCubit<S, M> extends Cubit<S> {
   }
 
   Future<bool> loadMore() async {
-    final isCanLoadMore = (_meta.page < _meta.pages);
+    final isCanLoadMore = _meta.page < _meta.pages;
 
     if (isCanLoadMore) {
-      _currentPage += 1;
+      currentPage += 1;
     }
 
     return isCanLoadMore;

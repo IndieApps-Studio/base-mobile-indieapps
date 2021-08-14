@@ -2,15 +2,15 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-import '../modules/login/view/login_screen.dart';
-import '../modules/main/view/main_page.dart';
+import 'package:base_mobile_indieapps/modules/login/view/login_screen.dart';
+import 'package:base_mobile_indieapps/modules/main/view/main_page.dart';
 
 void configureRoutes() {
   final router = GetIt.I<FluroRouter>();
 
   router.notFoundHandler = Handler(
     handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-      return _RoutesNotFound();
+      return const _RoutesNotFound();
     },
   );
 
@@ -18,7 +18,7 @@ void configureRoutes() {
     '/login',
     handler: Handler(
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
-          LoginScreen(),
+          const LoginScreen(),
     ),
     transitionType: TransitionType.cupertino,
   );
@@ -27,7 +27,7 @@ void configureRoutes() {
     '/main',
     handler: Handler(
       handlerFunc: (BuildContext? context, Map<String, List<String>> params) =>
-          MainPage(),
+          const MainPage(),
     ),
     transitionType: TransitionType.cupertino,
   );
@@ -42,7 +42,7 @@ class _RoutesNotFound extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: const <Widget>[
             Text('Routes not found'),
           ],
         ),

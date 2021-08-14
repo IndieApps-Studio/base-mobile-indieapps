@@ -8,7 +8,6 @@ void showToastError(String message) {
     msg: message.capitalize,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
     backgroundColor: Colors.red,
     textColor: Colors.white,
     fontSize: 14.0,
@@ -20,8 +19,7 @@ void showToastSuccess(String message) {
     msg: message.capitalize,
     toastLength: Toast.LENGTH_LONG,
     gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 1,
-    backgroundColor: Color(0xFF266ED1),
+    backgroundColor: const Color(0xFF266ED1),
     textColor: Colors.white,
     fontSize: 14.0,
   );

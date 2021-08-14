@@ -24,17 +24,17 @@ class CustomErrorWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(
+              const Icon(
                 Icons.error,
                 size: 32,
                 color: Color(0xFFDB5A5A),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Text(
                 tr('errors.tap_for_refresh'),
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFDB5A5A),
                 ),

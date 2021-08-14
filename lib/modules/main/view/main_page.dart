@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../widgets/custom_state_widget.dart';
-import '../cubit/counter_cubit.dart';
-import '../cubit/profile_cubit.dart';
+import 'package:base_mobile_indieapps/widgets/custom_state_widget.dart';
+import 'package:base_mobile_indieapps/modules/main/cubit/counter_cubit.dart';
+import 'package:base_mobile_indieapps/modules/main/cubit/profile_cubit.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: const Color(0xFFFFFFFF),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -23,19 +23,8 @@ class MainPage extends StatelessWidget {
             create: (context) => CounterCubit(),
           )
         ],
-        child: _MainWidget(),
+        child: const _MainWidget(),
       ),
-    );
-  }
-}
-
-class _MainExample extends StatelessWidget {
-  const _MainExample({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: null,
     );
   }
 }
@@ -48,14 +37,14 @@ class _MainWidget extends StatelessWidget {
     return CustomStateWidget<ProfileSuccess, ProfileLoading, ProfileFailed>(
       state: context.watch<ProfileCubit>().state,
       onError: () {
-        context.read<ProfileCubit>().initial();
+        context.read<ProfileCubit>().getUserDetail();
       },
       builder: (context, state) {
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Main'),
+              const Text('Main'),
               Text('${state.user.id}'),
               Text(state.user.name),
               Text(state.user.htmlUrl),
@@ -67,7 +56,7 @@ class _MainWidget extends StatelessWidget {
                     onPressed: () {
                       context.read<CounterCubit>().decrease();
                     },
-                    child: Text('Decrease'),
+                    child: const Text('Decrease'),
                   ),
                   const SizedBox(width: 8),
                   BlocBuilder<CounterCubit, int>(
@@ -83,7 +72,7 @@ class _MainWidget extends StatelessWidget {
                     onPressed: () {
                       context.read<CounterCubit>().increase();
                     },
-                    child: Text('Increase'),
+                    child: const Text('Increase'),
                   ),
                 ],
               )

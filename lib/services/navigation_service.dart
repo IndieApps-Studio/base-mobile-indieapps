@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
+
+/// Main Navigation used to navigate between screen, inharitance
+/// from [_NavigationService], it injected so it can easly call the methods
 class NavigationServiceMain extends _NavigationService {
+  /// Constructor that initializes the navigation service Key
   NavigationServiceMain() : super(GlobalKey<NavigatorState>());
 }
 
-class _NavigationService {
-  final GlobalKey<NavigatorState> navigatorKey;
-  String activeTitle = '';
-
+abstract class _NavigationService {
+  /// Constructotr that use the [NavigatorState] so it can be called everywhere
   _NavigationService(this.navigatorKey);
 
-  void pop<T extends Object>([T? result]) {
-    return navigatorKey.currentState?.pop();
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  void pop() {
+    return navigatorKey.currentState!.pop();
   }
 
   void popUntil(bool Function(Route<dynamic>) predicate) {
-    return navigatorKey.currentState?.popUntil(predicate);
+    return navigatorKey.currentState!.popUntil(predicate);
   }
 
-  Future? pushNamed(String routeName, {Object? args}) {
-    return navigatorKey.currentState?.pushNamed(routeName, arguments: args);
+  Future<dynamic> pushNamed(String routeName, {Object? args}) {
+    return navigatorKey.currentState!.pushNamed(routeName, arguments: args);
   }
 
-  Future? pushReplacementNamed(String routeName, {Object? args}) {
-    return navigatorKey.currentState
-        ?.pushReplacementNamed(routeName, arguments: args);
+  Future<dynamic> pushReplacementNamed(String routeName, {Object? args}) {
+    return navigatorKey.currentState!
+        .pushReplacementNamed(routeName, arguments: args);
   }
 
-  Future? pushRemoveUntil(String routeName, {Object? args}) {
-    return navigatorKey.currentState?.pushNamedAndRemoveUntil(
+  Future<dynamic> pushRemoveAllRoutes(String routeName, {Object? args}) {
+    return navigatorKey.currentState!.pushNamedAndRemoveUntil(
         routeName, (Route<dynamic> route) => false,
         arguments: args);
   }

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../../services/navigation_service.dart';
+import 'package:base_mobile_indieapps/services/navigation_service.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
-  onPressedLogin() {
+  void Function()? onPressedLogin() {
     GetIt.I<NavigationServiceMain>().pushReplacementNamed('/main');
   }
 
@@ -19,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Login Screen'),
+            const Text('Login Screen'),
             SizedBox(height: 16.h),
             ElevatedButton(
               onPressed: onPressedLogin,

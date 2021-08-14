@@ -21,7 +21,7 @@ class CustomStateWidget<SUCCESS, LOADING, FAILED> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (state is LOADING) {
-      return Center(child: CustomLoadingWidget());
+      return const Center(child: CustomLoadingWidget());
     } else if (state is FAILED) {
       return CustomErrorWidget(onTap: onError);
     } else if (state is SUCCESS) {
@@ -32,17 +32,17 @@ class CustomStateWidget<SUCCESS, LOADING, FAILED> extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Icon(
+          const Icon(
             Icons.error,
             size: 32,
             color: Color(0xFFDB5A5A),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Text(
             tr('errors.state', args: [state.toString()]),
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               color: Color(0xFFDB5A5A),
             ),

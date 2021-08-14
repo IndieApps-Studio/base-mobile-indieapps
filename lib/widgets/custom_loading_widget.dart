@@ -28,8 +28,8 @@ class CustomLoadingWidget extends StatelessWidget {
             width: size,
             child: Center(
               child: isLinear
-                  ? LinearProgressIndicator()
-                  : CircularProgressIndicator(),
+                  ? const LinearProgressIndicator()
+                  : const CircularProgressIndicator(),
             ),
           ),
         ),

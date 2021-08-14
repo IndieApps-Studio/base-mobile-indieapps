@@ -7,11 +7,14 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flavor/flutter_flavor.dart';
 
-import 'app/myapp.dart';
+import 'app/app.dart';
+import 'app/app_bloc_observer.dart';
 
-void main() async {
+Future main() async {
+  Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await SystemChrome.setPreferredOrientations(
@@ -24,9 +27,8 @@ void main() async {
   FlavorConfig(
     name: "PROD",
     color: Colors.green,
-    location: BannerLocation.topStart,
     variables: {
-      "baseUrl": "http://10.0.0.184:8000",
+      "baseUrl": "https://api.github.com",
       "username": "",
       "password": "",
     },
@@ -35,12 +37,11 @@ void main() async {
   runZonedGuarded(
     () => runApp(
       EasyLocalization(
-        startLocale: Locale('en', 'US'),
-        saveLocale: true,
-        supportedLocales: [Locale('en', 'US'), Locale('id', 'ID')],
+        startLocale: const Locale('en', 'US'),
+        supportedLocales: const [Locale('en', 'US'), Locale('id', 'ID')],
         path: 'assets/translations',
-        fallbackLocale: Locale('en', 'US'),
-        child: MyApp(),
+        fallbackLocale: const Locale('en', 'US'),
+        child: const App(),
       ),
     ),
     (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),

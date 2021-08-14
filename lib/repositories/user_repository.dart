@@ -1,26 +1,23 @@
-import 'package:base_mobile_indieapps/helper/base_repository.dart';
+import 'package:base_mobile_indieapps/repositories/base_repository.dart';
 import 'package:base_mobile_indieapps/models/base_response.dart';
 import 'package:base_mobile_indieapps/models/user.dart';
 import 'package:base_mobile_indieapps/services/hive_service.dart';
-import 'package:base_mobile_indieapps/services/user_service.dart';
 
 import 'package:get_it/get_it.dart';
 
 class UserRepository extends BaseRepository {
-  Future<BaseResponse> fetchUser() async {
-    final response = await fetch("/users/Zersya");
+  Future<BaseResponse<User>> getUserDetail() async {
+    final response = await get("/users/Zersya");
 
     if (response.statusCode == 200) {
-      final data = User.fromJson(response.data);
+      final map = response.data!;
+
+      final data = User.fromJson(map);
 
       GetIt.I<HiveService>().storeUser(data);
-      GetIt.I<UserService>().setUser = data;
-      return BaseResponse(
-        statusCode: response.statusCode,
-        data: data,
-      );
+      return BaseResponse<User>.success(data);
     }
 
-    return response;
+    return BaseResponse<User>.failure(response.message);
   }
 }

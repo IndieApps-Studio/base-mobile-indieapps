@@ -16,12 +16,13 @@ class UserAdapter extends TypeAdapter<User> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return User()
-      ..id = fields[0] as int
-      ..name = fields[1] as String
-      ..htmlUrl = fields[2] as String
-      ..createdAt = fields[3] as String
-      ..updatedAt = fields[4] as String;
+    return User(
+      fields[0] as int,
+      fields[1] as String,
+      fields[2] as String,
+      fields[3] as String,
+      fields[4] as String,
+    );
   }
 
   @override
@@ -50,3 +51,25 @@ class UserAdapter extends TypeAdapter<User> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+User _$UserFromJson(Map<String, dynamic> json) {
+  return User(
+    json['id'] as int,
+    json['name'] as String,
+    json['html_url'] as String,
+    json['created_at'] as String,
+    json['updated_at'] as String,
+  );
+}
+
+Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'html_url': instance.htmlUrl,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+    };

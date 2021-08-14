@@ -11,7 +11,7 @@ class DIService {
   static void initialize() {
     GetIt.I.registerSingleton<NavigationServiceMain>(NavigationServiceMain());
     GetIt.I.registerSingleton<FluroRouter>(FluroRouter());
-    GetIt.I.registerSingleton<FlutterSecureStorage>(FlutterSecureStorage());
+    GetIt.I.registerSingleton<FlutterSecureStorage>(const FlutterSecureStorage());
   }
 
   static void initializeConfig(Dio dio) {

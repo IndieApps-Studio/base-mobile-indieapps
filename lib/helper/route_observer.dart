@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SmartClassRouteObserver extends RouteObserver<PageRoute<dynamic>> {
+class AppRouteObserver extends RouteObserver<PageRoute<dynamic>> {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
